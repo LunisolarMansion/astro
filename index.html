@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Collection Form</h1>
+    <form id="dataForm">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="locality">Locality:</label>
+            <input type="text" id="locality" name="locality" required>
+        </div>
+        <div>
+            <label for="village">Village/Town/City:</label>
+            <input type="text" id="village" name="village" required>
+        </div>
+        <div>
+            <label for="postOffice">Post Office:</label>
+            <input type="text" id="postOffice" name="postOffice" required>
+        </div>
+        <div>
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district" required>
+        </div>
+        <div>
+            <label for="pin">PIN:</label>
+            <input type="text" id="pin" name="pin" required>
+        </div>
+        <div>
+            <label for="mobile">Mobile/WhatsApp No.:</label>
+            <input type="text" id="mobile" name="mobile" required>
+        </div>
+        <div>
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+        <div>
+            <label for="tob">Time of Birth:</label>
+            <input type="time" id="tob" name="tob" required>
+        </div>
+        <div>
+            <label for="pob">Place of Birth:</label>
+            <input type="text" id="pob" name="pob" required>
+        </div>
+        <div>
+            <label for="longitude">East Longitude:</label>
+            <input type="text" id="longitude" name="longitude" required>
+        </div>
+        <div>
+            <label for="latitude">North Latitude:</label>
+            <input type="text" id="latitude" name="latitude" required>
+        </div>
+        <div>
+            <label for="number">A Number (0-250):</label>
+            <input type="number" id="number" name="number" min="0" max="250" required>
+        </div>
+        <div>
+            <label for="category">Question Category:</label>
+            <select id="category" name="category" required>
+                <option value="Education & Profession">Education & Profession</option>
+                <option value="Marriage & Children">Marriage & Children</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+        <div id="otherCategoryDiv" style="display: none;">
+            <label for="otherCategory">Please specify:</label>
+            <input type="text" id="otherCategory" name="otherCategory">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('category').addEventListener('change', function () {
+            var otherCategoryDiv = document.getElementById('otherCategoryDiv');
+            if (this.value === 'Others') {
+                otherCategoryDiv.style.display = 'block';
+            } else {
+                otherCategoryDiv.style.display = 'none';
+            }
+        });
+
+        document.getElementById('dataForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            fetch(https://script.google.com/macros/s/AKfycby83gKwarbQEjUnmyxtpn9Z2j-nzzthauJkx4ZYmvSivLIZMX2B_YN_7WDzXd_OOFGQ0w/exec, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Data submitted successfully!');
+                document.getElementById('dataForm').reset();
+                document.getElementById('otherCategoryDiv').style.display = 'none';
+            })
+            .catch(error => {
+                alert('Error submitting data!');
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
