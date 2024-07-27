@@ -112,41 +112,37 @@
     </form>
 
     <script>
-        document.getElementById('category').addEventListener('change', function () {
-            var otherCategoryDiv = document.getElementById('otherCategoryDiv');
-            if (this.value === 'Others') {
-                otherCategoryDiv.style.display = 'block';
-            } else {
-                otherCategoryDiv.style.display = 'none';
-            }
-        });
-
         document.getElementById('dataForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            var data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+    e.preventDefault(); // Prevent the default form submission
+    var formData = new FormData(this);
+    var data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
 
-fetch('https://script.google.com/macros/s/AKfycby83gKwarbQEjUnmyxtpn9Z2j-nzzthauJkx4ZYmvSivLIZMX2B_YN_7WDzXd_OOFGQ0w/exec', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-})
-.then(response => response.text())
-.then(data => {
-    alert('Data submitted successfully!');
-    document.getElementById('dataForm').reset();
-    document.getElementById('otherCategoryDiv').style.display = 'none';
-})
-.catch(error => {
-    alert('Error submitting data!');
-    console.error('Error:', error);
-            });
-        });
+    // Log the data to verify it
+    console.log(data);
+
+    // Correct fetch URL
+    fetch('https://script.google.com/macros/s/AKfycby83gKwarbQEjUnmyxtpn9Z2j-nzzthauJkx4ZYmvSivLIZMX2B_YN_7WDzXd_OOFGQ0w/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert('Data submitted successfully!');
+        document.getElementById('dataForm').reset();
+        document.getElementById('otherCategoryDiv').style.display = 'none';
+    })
+    .catch(error => {
+        alert('Error submitting data!');
+        console.error('Error:', error);
+    });
+});
+
     </script>
 </body>
 </html>
