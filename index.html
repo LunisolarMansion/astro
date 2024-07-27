@@ -129,24 +129,31 @@
                 data[key] = value;
             });
 
-            fetch(https://script.google.com/macros/s/AKfycbw0pdx4kBb1mBmIeg9NPU1uau4wX_Q9Vb6ZTu7nn7GBj8IxZ5817OZSTeJBgOUtbBzsIA/exec, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert('Data submitted successfully!');
-                document.getElementById('dataForm').reset();
-                document.getElementById('otherCategoryDiv').style.display = 'none';
-            })
-            .catch(error => {
-                alert('Error submitting data!');
-                console.error('Error:', error);
-            });
-        });
+            fetch('https://script.google.com/macros/s/AKfycbw0pdx4kBb1mBmIeg9NPU1uau4wX_Q9Vb6ZTu7nn7GBj8IxZ5817OZSTeJBgOUtbBzsIA/exec', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => response.text())
+.then(data => {
+    alert('Data submitted successfully!');
+    document.getElementById('dataForm').reset();
+    document.getElementById('otherCategoryDiv').style.display = 'none';
+})
+.catch(error => {
+    alert('Error submitting data!');
+    console.error('Error:', error);
+});
+
+            
+            
+            
+            
+            
+            
+
     </script>
 </body>
 </html>
