@@ -129,7 +129,7 @@
                 data[key] = value;
             });
 
-            fetch('https://script.google.com/macros/s/AKfycby83gKwarbQEjUnmyxtpn9Z2j-nzzthauJkx4ZYmvSivLIZMX2B_YN_7WDzXd_OOFGQ0w/exec', {
+fetch('https://script.google.com/macros/s/AKfycby83gKwarbQEjUnmyxtpn9Z2j-nzzthauJkx4ZYmvSivLIZMX2B_YN_7WDzXd_OOFGQ0w/exec', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -145,15 +145,8 @@
 .catch(error => {
     alert('Error submitting data!');
     console.error('Error:', error);
-});
-
-            
-            
-            
-            
-            
-            
-
+            });
+        });
     </script>
 </body>
 </html>
