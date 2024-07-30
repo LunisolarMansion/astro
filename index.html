@@ -125,23 +125,29 @@
 
     // Correct fetch URL
     fetch('https://script.google.com/macros/s/AKfycby83gKwarbQEjUnmyxtpn9Z2j-nzzthauJkx4ZYmvSivLIZMX2B_YN_7WDzXd_OOFGQ0w/exec', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.text())
-    .then(data => {
-        alert('Data submitted successfully!');
-        document.getElementById('dataForm').reset();
-        document.getElementById('otherCategoryDiv').style.display = 'none';
-    })
-    .catch(error => {
-        alert('Error submitting data!');
-        console.error('Error:', error);
-    });
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.text();
+})
+.then(data => {
+    alert('Data submitted successfully!');
+    document.getElementById('dataForm').reset();
+    document.getElementById('otherCategoryDiv').style.display = 'none';
+})
+.catch(error => {
+    alert('Error submitting data!');
+    console.error('Error:', error);
 });
+
+
 
     </script>
 </body>
